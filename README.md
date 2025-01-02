@@ -1,2 +1,2 @@
-# cursach
-cursach
+# coursework
+Coursework user metaphore
