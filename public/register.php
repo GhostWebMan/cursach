@@ -1,32 +1,30 @@
 <?php
+session_start();
 $servername = "MySQL-8.2";
 $username = "root";
 $password = "";
 $dbname = "loginreg";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST["username"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-    $email = $_POST["email"];
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+        $stmt->execute([$username, $email, $password]);
 
-    $sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $username, $password, $email);
-
-    if ($stmt->execute()) {
-        echo "Registration successful!";
-    } else {
-        echo "Error: " . $stmt->error;
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        $_SESSION['password'] = $password;
+        header("Location: ../front/info.php");
+        exit();
     }
-
-    $stmt->close();
+} catch(PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
 
-$conn->close();
+$conn = null;
 ?>
