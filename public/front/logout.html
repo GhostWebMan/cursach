@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Logout</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,28 +14,37 @@
             height: 100vh;
             margin: 0;
         }
-        .container {
+        .logout-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
             text-align: center;
         }
-        .container button {
-            width: 150px;
+        .logout-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .logout-container button {
+            width: 100%;
             padding: 10px;
-            margin: 10px;
             background-color: #4CAF50;
             border: none;
             border-radius: 4px;
             color: white;
             font-size: 16px;
         }
-        .container button:hover {
+        .logout-container button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <button onclick="location.href='front/register.html'">Register</button>
-        <button onclick="location.href='front/login.html'">Login</button>
+    <div class="logout-container">
+        <h2>You have been logged out</h2>
+        <p>Email: <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : 'Email not set'; ?></p>
+        <button onclick="location.href='login.html'">Login Again</button>
     </div>
 </body>
 </html>
