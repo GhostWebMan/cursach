@@ -1,6 +1,6 @@
 <?php
 session_start();
-$servername = "MySQL-8.2";
+$servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "loginreg";
@@ -10,17 +10,17 @@ try {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST["username"];
-        $email = $_POST["email"];
         $password = $_POST["password"];
+        $email = $_POST["email"];
 
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-        $stmt->execute([$username, $email, $password]);
+        $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
+        $stmt->execute([$username, $password, $email]);
 
         $_SESSION['username'] = $username;
-        $_SESSION['email'] = $email;
         $_SESSION['password'] = $password;
+        $_SESSION['email'] = $email;
+
         header("Location: ../front/info.php");
-        exit();
     }
 } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();

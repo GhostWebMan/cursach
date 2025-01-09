@@ -2,7 +2,6 @@
 session_start();
 if (!isset($_SESSION['email'])) {
     header("Location: login.html");
-    exit();
 }
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];

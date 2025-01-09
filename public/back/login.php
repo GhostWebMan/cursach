@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$servername = "MySQL-8.2";
+$servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "loginreg";
@@ -13,7 +13,7 @@ try {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        $stmt = $conn->prepare("SELECT id, username, email, password FROM users WHERE username = ?");
+        $stmt = $conn->prepare("SELECT id, username, password, email FROM users WHERE username = ?");
         $stmt->execute([$username]);
         $user = $stmt->fetch();
 
@@ -22,7 +22,6 @@ try {
             $_SESSION['email'] = $user['email'];
             $_SESSION['password'] = $user['password'];
             header("Location: ../front/info.php");
-            exit();
         } else {
             echo "Invalid username or password.";
         }

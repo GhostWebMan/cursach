@@ -17,8 +17,8 @@
         .login-container {
             background-color: #fff;
             padding: 20px;
+            padding-bottom: 25px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
             text-align: center;
         }
@@ -26,15 +26,19 @@
             margin-bottom: 20px;
             color: #333;
         }
+        .ott {
+            position: relative;
+            top: 6px;
+        }
         .login-container input {
-            width: 100%;
+            width: 83%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
         .login-container button {
-            width: 100%;
+            width: 90.5%;
             padding: 10px;
             background-color: #4CAF50;
             border: none;
@@ -55,7 +59,7 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <button onclick="location.href='register.html'">Register</button>
+        <button class="ott" onclick="location.href='register.html'">Register</button>
     </div>
 </body>
 </html>

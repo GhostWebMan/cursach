@@ -1,9 +1,22 @@
+<?php
+session_start();
+
+if (isset($_SESSION['username'])) { 
+    header("Location: /front/info.php") ;
+}
+
+else { 
+    session_destroy();
+    echo "This session does not exist.";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logout</title>
+    <title>Main Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,36 +27,28 @@
             height: 100vh;
             margin: 0;
         }
-        .logout-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+        .container {
             text-align: center;
         }
-        .logout-container h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .logout-container button {
-            width: 100%;
+        .container button {
+            width: 150px;
             padding: 10px;
+            margin: 10px;
             background-color: #4CAF50;
             border: none;
             border-radius: 4px;
             color: white;
             font-size: 16px;
         }
-        .logout-container button:hover {
+        .container button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="logout-container">
-        <h2>You have been logged out</h2>
-        <button onclick="location.href='login.html'">Login Again</button>
+    <div class="container">
+        <button onclick="location.href='front/register.html'">Register</button>
+        <button onclick="location.href='front/login.html'">Login</button>
     </div>
 </body>
 </html>
